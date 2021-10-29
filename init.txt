@@ -1,0 +1,14 @@
+D:/Acrolect/Documents/GitHub/ts-pixi-game
+
+npm init -y
+npm install --save-dev webpack webpack-cli webpack-dev-server babel-loader @babel/core @babel/preset-env typescript ts-loader url-loader
+npm install pixi.js pixi.js-legacy puxi.js
+npm install signals js-signals-factory
+
+
+devtool: "source-map",
+
+    "clean": "rm dist/bundle.js",
+    "build-dev": "webpack --mode development",
+    "build-prod": "webpack --mode production",
+    "start": "webpack serve --hot --mode development"
