@@ -1,3 +1,6 @@
+// import * as SignalFactory from 'js-signals-factory';
+// import {SignalFactory} from 'js-signals-factory';
+
 export default class ConsView {
 
   constructor() {
@@ -28,6 +31,15 @@ export default class ConsView {
       console.log('Строковый код: ', event.code);
     });
 
+    // SignalFactory.getSignal('pointerup').add(this.log);
+
   }
+
+    /**
+     * log
+     */
+    public log(payload: any) {
+      console.log("->", payload.targetName, payload.currentTargetName);
+    }
 
 }

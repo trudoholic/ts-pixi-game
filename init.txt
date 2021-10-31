@@ -1,4 +1,5 @@
 cd D:/Acrolect/Documents/GitHub/ts-pixi-game
+npm run build-prod
 
 npm init -y
 npm install --save-dev webpack webpack-cli webpack-dev-server babel-loader @babel/core @babel/preset-env typescript ts-loader url-loader

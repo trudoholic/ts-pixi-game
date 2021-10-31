@@ -43,6 +43,12 @@ export default class PixiView {
       // console.log(">>", (e.target as any).name, (e.currentTarget as any).name);
     // }
     console.log(">>", event.target.name, event.currentTarget.name);
+    
+    // SignalFactory.getSignal('pointerup').dispatch({
+    //   targetName: event.target.name,
+    //   currentTargetName: event.currentTarget.name,
+    // });
+
   }
 
   /**
