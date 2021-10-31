@@ -1,4 +1,4 @@
-export default class Model {
+export default class PixiView {
 
   /**
    *
@@ -12,6 +12,6 @@ export default class Model {
    * hello
    */
   public hello() {
-    console.log("hello model!");
+    console.log("hello Pixi View!");
   }
 }
