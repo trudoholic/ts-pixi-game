@@ -1,2 +1,6 @@
+import Model from "./model/Model";
+
 console.log("hello world!");
-console.log("123-456");
+
+const model = new Model();
+model.hello();
