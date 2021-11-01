@@ -1,5 +1,6 @@
 // import * as PIXI from 'pixi.js-legacy';
 import * as PIXI from 'pixi.js';
+import emitter from '../eventEmitter';
 
 export default class PixiView {
 
@@ -29,6 +30,7 @@ export default class PixiView {
 
     // this.test();
     this.hit_test();
+
   }
 
   /**
@@ -42,12 +44,11 @@ export default class PixiView {
       // const currentTarget = e.currentTarget as PIXI.Container;
       // console.log(">>", (e.target as any).name, (e.currentTarget as any).name);
     // }
-    console.log(">>", event.target.name, event.currentTarget.name);
-    
-    // SignalFactory.getSignal('pointerup').dispatch({
-    //   targetName: event.target.name,
-    //   currentTargetName: event.currentTarget.name,
-    // });
+
+    emitter.emit('test', {
+      targetName: event.target.name,
+      currentTargetName: event.currentTarget.name,
+    });
 
   }
 
@@ -63,7 +64,7 @@ export default class PixiView {
     container.on('pointerup', this.onPointerUp);
 
     // const texture = PIXI.Texture.from('examples/assets/bunny.png');
-    const texture = PIXI.Texture.WHITE;
+    const texture = PIXI.Texture.WHITE; // 16x16
     for (let i = 0; i < 25; i++) {
         const bunny = new PIXI.Sprite(texture);
         bunny.alpha = 0.5;
@@ -91,7 +92,6 @@ export default class PixiView {
     const container = new PIXI.Container();
     this.app.stage.addChild(container);
 
-    // const texture = PIXI.Texture.from('examples/assets/bunny.png');
     const texture = PIXI.Texture.WHITE;
     for (let i = 0; i < 25; i++) {
         const bunny = new PIXI.Sprite(texture);

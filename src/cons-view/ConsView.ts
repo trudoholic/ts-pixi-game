@@ -1,5 +1,4 @@
-// import * as SignalFactory from 'js-signals-factory';
-// import {SignalFactory} from 'js-signals-factory';
+import emitter from '../eventEmitter';
 
 export default class ConsView {
 
@@ -31,7 +30,7 @@ export default class ConsView {
       console.log('Строковый код: ', event.code);
     });
 
-    // SignalFactory.getSignal('pointerup').add(this.log);
+    emitter.on('test', this.log);
 
   }
 
@@ -39,7 +38,7 @@ export default class ConsView {
      * log
      */
     public log(payload: any) {
-      console.log("->", payload.targetName, payload.currentTargetName);
+      console.log("-->", payload.targetName, payload.currentTargetName);
     }
 
 }
