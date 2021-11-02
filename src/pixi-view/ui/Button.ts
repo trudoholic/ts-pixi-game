@@ -3,9 +3,10 @@ import emitter from '../../eventEmitter'
 
 export default class Button extends PIXI.Container {
 
-  constructor() {
+  constructor(text: string) {
     super();
-    this.name = "Button";
+    // this.name = "Button";
+    this.name = text;
 
     const sprite = new PIXI.Sprite(PIXI.Texture.WHITE);
     sprite.tint = 0xffff00;

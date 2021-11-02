@@ -17,29 +17,26 @@ export default class Panel extends PIXI.Container {
     const bg = this.bg = new PIXI.Sprite(PIXI.Texture.WHITE);
     bg.alpha = .5;
     this.addChild(bg);
-
-    this.addButton();
-    this.addButton();
   }
 
     /**
      * addButton
      */
-    public addButton() {
-      const button = new Button();
+    public addButton(text: string) {
+      const button = new Button(text);
       this.addChild(button);
       this.buttons.push(button);
 
-      const padding = 20;
-      const r = this.buttons.reduce((width: number, it) => (
+      const paddingX = 20, paddingY = 15, gap = 10;
+      const bgWidth = this.buttons.reduce((width: number, it) => (
         button.x = width,
-        button.y = 10,
-        width + button.width + 10
-      ), padding);
-      console.log("r =", r);
+        button.y = paddingY,
+        width + button.width + gap
+      ), paddingX);
+      console.log("bgWidth =", bgWidth);
 
-      this.bg.width = r + padding;
-      this.bg.height = button.height + 20;
+      this.bg.width = bgWidth - gap + paddingX;
+      this.bg.height = button.height + paddingY + paddingY;
 
     }
 
