@@ -1,6 +1,8 @@
 // import * as PIXI from 'pixi.js-legacy';
-import * as PIXI from 'pixi.js';
-import emitter from '../eventEmitter';
+import * as PIXI from 'pixi.js'
+import emitter from '../eventEmitter'
+
+import HUD from "./HUD"
 
 export default class PixiView {
 
@@ -10,7 +12,6 @@ export default class PixiView {
    *
    */
   constructor() {
-    // super();
     this.app = new PIXI.Application({
       width: 1200,
       height: 900,
@@ -29,7 +30,10 @@ export default class PixiView {
     this.app.stage.on('pointerup', this.onPointerUp);
 
     // this.test();
-    this.hit_test();
+    // this.hit_test();
+
+    const hud = new HUD();
+    this.app.stage.addChild(hud);
 
   }
 
@@ -49,7 +53,6 @@ export default class PixiView {
       targetName: event.target.name,
       currentTargetName: event.currentTarget.name,
     });
-
   }
 
   /**
