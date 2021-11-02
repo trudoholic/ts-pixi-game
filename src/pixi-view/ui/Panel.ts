@@ -5,24 +5,42 @@ import Button from "./Button"
 
 export default class Panel extends PIXI.Container {
 
+  private bg: PIXI.Sprite;
+  private buttons: Array<Button> = [];
+
   constructor() {
     super();
     this.name = "Panel";
     this.interactive = true;
     this.on('pointerup', e => { e.stopPropagation() });
 
-    const sprite = new PIXI.Sprite(PIXI.Texture.WHITE);
-    sprite.alpha = .5;
-    this.addChild(sprite);
+    const bg = this.bg = new PIXI.Sprite(PIXI.Texture.WHITE);
+    bg.alpha = .5;
+    this.addChild(bg);
 
-    const button = new Button();
-    this.addChild(button);
-
-    sprite.width  = button.width  + 20;
-    sprite.height = button.height + 20;
-
-    button.x = 10;
-    button.y = 10;
+    this.addButton();
+    this.addButton();
   }
+
+    /**
+     * addButton
+     */
+    public addButton() {
+      const button = new Button();
+      this.addChild(button);
+      this.buttons.push(button);
+
+      const padding = 20;
+      const r = this.buttons.reduce((width: number, it) => (
+        button.x = width,
+        button.y = 10,
+        width + button.width + 10
+      ), padding);
+      console.log("r =", r);
+
+      this.bg.width = r + padding;
+      this.bg.height = button.height + 20;
+
+    }
 
 }
