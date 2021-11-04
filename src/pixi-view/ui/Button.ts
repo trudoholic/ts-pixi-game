@@ -40,7 +40,8 @@ export default class Button extends PIXI.Container {
 
   public onPointerUp(event: PIXI.InteractionEvent) {
     event.stopPropagation();
-    emitter.emit('test2', {
+    // emitter.emit('test2', {
+    emitter.emit('click_button', {
       targetName: event.target.name,
       currentTargetName: event.currentTarget.name,
     });

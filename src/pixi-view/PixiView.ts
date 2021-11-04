@@ -49,7 +49,7 @@ export default class PixiView {
       // console.log(">>", (e.target as any).name, (e.currentTarget as any).name);
     // }
 
-    emitter.emit('test', {
+    emitter.emit('click_stage', {
       targetName: event.target.name,
       currentTargetName: event.currentTarget.name,
     });

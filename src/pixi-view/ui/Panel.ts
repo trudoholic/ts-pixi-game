@@ -33,7 +33,8 @@ export default class Panel extends PIXI.Container {
         button.y = paddingY,
         width + button.width + gap
       ), paddingX);
-      console.log("bgWidth =", bgWidth);
+
+      // console.log("bgWidth =", bgWidth);
 
       this.bg.width = bgWidth - gap + paddingX;
       this.bg.height = button.height + paddingY + paddingY;

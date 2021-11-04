@@ -30,8 +30,6 @@ export default class ConsView {
       console.log('Строковый код: ', event.code);
     });
 
-    emitter.on('test', this.log);
-    emitter.on('test2', this.log2);
   }
 
     /**
@@ -39,9 +37,6 @@ export default class ConsView {
      */
     public log(payload: any) {
       console.log("-->", payload.targetName, payload.currentTargetName);
-    }
-    public log2(payload: any) {
-      console.log("==>", payload.targetName, payload.currentTargetName);
     }
 
 }
