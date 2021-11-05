@@ -3,14 +3,17 @@ import Button from "./Button"
 
 export default class Panel extends PIXI.Container {
 
-  private conf: any;
   private bg: PIXI.Sprite;
   private buttonsContainer = new PIXI.Container;
+  private conf: any;
+  private rect: PIXI.Rectangle;
 
-  constructor(conf: any) {
+  constructor(rect: PIXI.Rectangle, conf: any = {}) {
     super();
     this.conf = conf;
     this.name = "Panel";
+    this.rect = rect;
+
     this.interactive = true;
     this.on('pointerup', e => { e.stopPropagation() });
 
@@ -65,7 +68,10 @@ export default class Panel extends PIXI.Container {
      * setPos
      */
     private setPos() {
-      // this.x = this.conf.dockX > 0 ? (this.conf.dockX < 1 ? (this.parent.width - this.bg.width) / 2 : this.parent.width - this.bg.width) : 0;
+      const dW = this.rect.width - this.bg.width;
+      const dH = this.rect.height - this.bg.height;
+      this.x = ! this.conf.dockX ? 0 : this.conf.dockX < 1 ? dW / 2 : dW;
+      this.y = ! this.conf.dockY ? 0 : this.conf.dockY < 1 ? dH / 2 : dH;
     }
 
 }

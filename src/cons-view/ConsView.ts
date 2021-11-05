@@ -4,6 +4,8 @@ export default class ConsView {
 
   constructor() {
 
+    //document.body.onkeyup = function(e){}
+
     document.addEventListener('keydown', event => {
       if (event.repeat) {
         event.preventDefault();

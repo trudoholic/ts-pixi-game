@@ -12,9 +12,10 @@ export default class PixiView {
    *
    */
   constructor() {
+    const width = 1200, height = 900;
     this.app = new PIXI.Application({
-      width: 1200,
-      height: 900,
+      width: width,
+      height: height,
       backgroundColor: 0x35654d,
       antialias: true,
       resolution: window.devicePixelRatio || 1,
@@ -32,7 +33,7 @@ export default class PixiView {
     // this.test();
     // this.hit_test();
 
-    const hud = new HUD();
+    const hud = new HUD(new PIXI.Rectangle(0, 0, width, height));
     this.app.stage.addChild(hud);
 
   }

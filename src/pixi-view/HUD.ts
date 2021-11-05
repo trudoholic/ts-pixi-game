@@ -6,13 +6,18 @@ import Panel from "./ui/Panel"
 
 export default class HUD extends PIXI.Container {
 
-  constructor() {
+  constructor(rect: PIXI.Rectangle) {
     super();
     this.name = "HUD";
 
-    const panel = new Panel({ isVert: true, dockX: 1, dockY: 1 });
-    this.addChild(panel);
-    config.players.forEach(it => panel.addButton(it.name));
+    const panelA = new Panel(rect);
+    this.addChild(panelA);
+    config.players.forEach(it => panelA.addButton(it.name));
+
+    const panelB = new Panel(rect, { isVert: true, dockX: .5, dockY: .5 });
+    this.addChild(panelB);
+    config.players.forEach(it => panelB.addButton(it.name));
+
   }
 
 }
