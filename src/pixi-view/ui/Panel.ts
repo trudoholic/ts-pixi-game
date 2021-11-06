@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
-import Button from "./Button"
+import Button from './Button'
+import mediator from '../mediator'
 
 export default class Panel extends PIXI.Container {
 
@@ -28,6 +29,7 @@ export default class Panel extends PIXI.Container {
      */
     public addButton(text: string) {
       const button = new Button(text);
+      mediator.register(button);
       this.buttonsContainer.addChild(button);
       this.conf.isVert ? this.adjustY(button) : this.adjustX(button);
     }

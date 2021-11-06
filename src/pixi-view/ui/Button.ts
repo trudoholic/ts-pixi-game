@@ -47,4 +47,11 @@ export default class Button extends PIXI.Container {
     });
   }
 
+  /**
+   * setText
+   */
+  public setText(text: string) {
+    this.label.text = this.name + ': ' + text;
+  }
+
 }
