@@ -1,11 +1,11 @@
 import emitter from './eventEmitter';
 import loadCommands from './commands';
 
-import Model from "./model/Model"
+// import model from "./model/model"
 import ConsView from "./cons-view/ConsView"
 import PixiView from "./pixi-view/PixiView"
 
-const model = new Model();
+// const model = new Model();
 // model.hello();
 
 const consView = new ConsView();

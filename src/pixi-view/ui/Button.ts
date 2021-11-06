@@ -7,7 +7,6 @@ export default class Button extends PIXI.Container {
 
   constructor(text: string) {
     super();
-    // this.name = "Button";
     this.name = text;
 
     const width = 80, height = 30;
@@ -25,7 +24,6 @@ export default class Button extends PIXI.Container {
     });
 
     this.label = new PIXI.Text(text, textStyle);
-    // this.label = new PIXI.Text('0', textStyle);
     if (this.label.width > width) {
       this.label.width = width;
     }
@@ -40,7 +38,6 @@ export default class Button extends PIXI.Container {
 
   public onPointerUp(event: PIXI.InteractionEvent) {
     event.stopPropagation();
-    // emitter.emit('test2', {
     emitter.emit('click_button', {
       targetName: event.target.name,
       currentTargetName: event.currentTarget.name,
