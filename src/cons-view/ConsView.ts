@@ -32,7 +32,17 @@ export default class ConsView {
       console.log('Строковый код: ', event.code);
     });
 
+    emitter.on('m_end', () => this.info('Game End'));
+    emitter.on('m_start', () => this.info('Game Start'));
+
   }
+
+    /**
+     * info
+     */
+    public info(msg: string) {
+      console.info("#", msg);
+    }
 
     /**
      * log
