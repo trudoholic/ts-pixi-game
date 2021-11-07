@@ -1,6 +1,6 @@
 import model from "../model/model"
 
-export default function cmd_start() {
+export default function cmd_end() {
   return async (payload: any) => {
     await model.start();
   };

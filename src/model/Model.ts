@@ -22,6 +22,7 @@ class Model {
     console.log("Model start!");
     emitter.emit('m_start', { targetName: 'New' });
   }
+
 }
 
 const model = new Model();

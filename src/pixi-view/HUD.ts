@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
 import emitter from '../eventEmitter'
+import mediator from './mediator'
 
 import config from '../config'
 import Panel from "./ui/Panel"
@@ -25,6 +26,11 @@ export default class HUD extends PIXI.Container {
     const panelD = new Panel(rect, { dockX: .5, dockY: .5 });
     this.addChild(panelD);
     config.players.forEach(it => panelD.addButton(it.name));
+
+    const button = mediator.getButton('New');
+    if (button) {
+      button.enable();
+    }
 
   }
 

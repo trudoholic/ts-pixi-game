@@ -5,7 +5,8 @@ export default function m_start() {
     const button = mediator.getButton(payload.targetName);
     console.log('## button:', payload.targetName, !!button);
     if (button) {
-      button.setText('OK');
+      // button.setText('OK');
+      button.enable();
     }
   };
 };
