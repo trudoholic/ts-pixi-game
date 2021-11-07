@@ -2,9 +2,8 @@ import emitter from '../eventEmitter';
 
 class Model {
 
-  /**
-   *
-   */
+  private _active: boolean = false;
+
   constructor() {
     // super();
     // Focused
@@ -19,8 +18,20 @@ class Model {
    * start
    */
   public start() {
-    console.log("Model start!");
-    emitter.emit('m_start', { targetName: 'New' });
+    if (! this._active) {
+      this._active = true;
+      emitter.emit('m_start', {});
+    }
+  }
+
+  /**
+   * end
+   */
+  public end() {
+    if (this._active) {
+      this._active = false;
+      emitter.emit('m_end', {});
+    }
   }
 
 }

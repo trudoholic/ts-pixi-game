@@ -4,12 +4,13 @@ export default function click_button() {
   return async (payload: any) => {
 
     switch (payload.targetName) {
+
       case 'New':
-      console.log('Start New Game');
-      await emitter.emit('cmd_start', {
-        targetName: payload.targetName,
-        currentTargetName: payload.currentTargetName,
-      });
+      await emitter.emit('cmd_start', {});
+        break;
+
+      case 'End':
+      await emitter.emit('cmd_end', {});
         break;
 
       default:
