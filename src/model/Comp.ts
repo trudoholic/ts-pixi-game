@@ -13,6 +13,10 @@ export default class Comp {
     comp.parent = this;
   }
 
+  public at(i: number) {
+    return this._children[i];
+  }
+
   public get children() {
     return this._children.map(it =>it.name);
   }

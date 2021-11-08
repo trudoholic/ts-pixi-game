@@ -32,14 +32,17 @@ export default class ConsView {
       console.log('Строковый код: ', event.code);
     });
 
-    emitter.on('m_end', () => this.info('Game End'));
     emitter.on('m_start', () => this.info('Game Start'));
+    emitter.on('m_end', () => this.info('Game End'));
 
-    // emitter.on('m_end_round', (payload: any)   => this.info(`Round ${payload.round} End`));
     // emitter.on('m_start_round', (payload: any) => this.info(`Round ${payload.round} Start`));
+    // emitter.on('m_end_round', (payload: any)   => this.info(`Round ${payload.round} End`));
 
-    emitter.on('m_end_round', (payload: any) => this.groupEnd(`Round ${payload.round} End`));
     emitter.on('m_start_round', (payload: any) => this.group(`Round ${payload.round} Start`));
+    emitter.on('m_end_round', (payload: any) => this.groupEnd(`Round ${payload.round} End`));
+
+    emitter.on('m_start_turn', (payload: any) => this.group(`Turn ${payload.turn} Start : ${payload.name}`));
+    emitter.on('m_end_turn', (payload: any) => this.groupEnd(`Turn ${payload.turn} End : ${payload.name}`));
 
   }
 
