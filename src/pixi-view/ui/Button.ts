@@ -49,6 +49,9 @@ export default class Button extends PIXI.Container {
     this.interactive = true;
     this.buttonMode  = true;
     this.on('pointerup', this.onPointerUp);
+    this.on('pointerover', () => this.fg.alpha = .5);
+    this.on('pointerout',  () => this.fg.alpha = 1);
+
   }
 
   public onPointerUp(event: PIXI.InteractionEvent) {
