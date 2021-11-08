@@ -44,6 +44,15 @@ class Mediator {
     }
   }
 
+  /**
+   * toggle button list
+   */
+  public toggleList(ids: Array<string>, enable: boolean) {
+    ids.forEach((id: string) => {
+      this.toggle(id, enable);
+    });
+  }
+
 }
 
 const mediator = new Mediator();

@@ -29,7 +29,8 @@ const config = {
       '.ts',
       '.js'
     ]
-  }
+  },
+  performance: { hints: false }
 };
 
 module.exports = config;

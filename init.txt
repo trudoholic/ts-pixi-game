@@ -13,6 +13,9 @@ devtool: "source-map",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
     "start": "webpack serve --hot --mode development"
+
+  performance: { hints: false }
+
     
     
 npm install -g serve

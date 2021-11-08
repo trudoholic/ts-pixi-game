@@ -21,7 +21,7 @@ export default class HUD extends PIXI.Container {
 
     const panelC = new Panel(rect, { dockX: .5 });
     this.addChild(panelC);
-    ['New', 'End'].forEach(it => panelC.addButton(it));
+    ['New', 'Next', 'End'].forEach(it => panelC.addButton(it));
 
     const panelD = new Panel(rect, { dockX: .5, dockY: .5 });
     this.addChild(panelD);
