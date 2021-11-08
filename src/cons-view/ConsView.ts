@@ -35,23 +35,42 @@ export default class ConsView {
     emitter.on('m_end', () => this.info('Game End'));
     emitter.on('m_start', () => this.info('Game Start'));
 
-    emitter.on('m_end_round', (payload: any)   => this.info(`Round ${payload.round} End`));
-    emitter.on('m_start_round', (payload: any) => this.info(`Round ${payload.round} Start`));
+    // emitter.on('m_end_round', (payload: any)   => this.info(`Round ${payload.round} End`));
+    // emitter.on('m_start_round', (payload: any) => this.info(`Round ${payload.round} Start`));
+
+    emitter.on('m_end_round', (payload: any) => this.groupEnd(`Round ${payload.round} End`));
+    emitter.on('m_start_round', (payload: any) => this.group(`Round ${payload.round} Start`));
 
   }
 
-    /**
-     * info
-     */
-    public info(msg: string) {
-      console.info("#", msg);
-    }
+  /**
+   * info
+   */
+  public info(msg: string) {
+    console.info("#", msg);
+  }
 
-    /**
-     * log
-     */
-    public log(payload: any) {
-      console.log("-->", payload.targetName, payload.currentTargetName);
-    }
+  /**
+   * group
+   */
+  public group(msg: string) {
+    console.group(msg);
+    console.log(msg);
+  }
+
+  /**
+   * groupEnd
+   */
+  public groupEnd(msg: string) {
+    console.log(msg);
+    console.groupEnd();
+  }
+
+  /**
+   * log
+   */
+  public log(payload: any) {
+    console.log("-->", payload.targetName, payload.currentTargetName);
+  }
 
 }
