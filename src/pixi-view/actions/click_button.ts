@@ -9,6 +9,10 @@ export default function click_button() {
       await emitter.emit('cmd_start', {});
         break;
 
+      case 'Next':
+      await emitter.emit('cmd_next', {});
+        break;
+
       case 'End':
       await emitter.emit('cmd_end', {});
         break;

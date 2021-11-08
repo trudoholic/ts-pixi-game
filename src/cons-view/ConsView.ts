@@ -35,6 +35,9 @@ export default class ConsView {
     emitter.on('m_end', () => this.info('Game End'));
     emitter.on('m_start', () => this.info('Game Start'));
 
+    emitter.on('m_end_round', (payload: any)   => this.info(`Round ${payload.round} End`));
+    emitter.on('m_start_round', (payload: any) => this.info(`Round ${payload.round} Start`));
+
   }
 
     /**
