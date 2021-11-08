@@ -14,7 +14,7 @@ export default class Button extends PIXI.Container {
     super();
     this.name = text;
 
-    const width = 80, height = 30, padding = 2;
+    const width = 100, height = 30, padding = 2;
 
     const bg = this.bg = new PIXI.Sprite(PIXI.Texture.WHITE);
     bg.tint = 0x808080;

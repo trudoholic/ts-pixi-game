@@ -18,9 +18,16 @@ class Mediator {
     emitter.on('m_end', m_end());
     emitter.on('m_start', m_start());
 
+    emitter.on('m_start_round', (payload: any) => {
+      const button = this.getButton('Round');
+      if (button) { button.setText(payload.round); }
+    });
+
     emitter.on('m_start_turn', (payload: any) => {
-      const button = this.getButton(payload.name);
+      let button = this.getButton(payload.name);
       if (button) { button.enable(); }
+      button = this.getButton('Player');
+      if (button) { button.setText(payload.turn); }
     });
     emitter.on('m_end_turn', (payload: any) => {
       const button = this.getButton(payload.name);
