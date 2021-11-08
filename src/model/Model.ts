@@ -10,7 +10,8 @@ class Model {
   private _n: number = 0;
 
   private _round: number = 0;
-  private _turn: number = 0;
+  private _turn:  number = 0;
+  private _phase: number = 0;
 
   constructor() {
     this._root.add(this._players);
@@ -34,6 +35,7 @@ class Model {
 
   public end() {
     if (this._active) {
+      this.endPhase();
       this.endTurn();
       this.endRound();
 
@@ -44,15 +46,26 @@ class Model {
 
   public next() {
     if (this._active) {
-      this.endTurn();
-      ++ this._turn;
-      if (this._turn === this._n) {
-        this.endRound();
-        ++ this._round;
-        this.startRound();
+      this.endPhase();
+      ++ this._phase;
+      if (this._phase === config.phases.length) {
+        //
+        this.endTurn();
+        ++ this._turn;
+        if (this._turn === this._n) {
+          //
+          this.endRound();
+          ++ this._round;
+          this.startRound();
+          //
+        }
+        else {
+          this.startTurn();
+        }
+        //
       }
       else {
-        this.startTurn();
+        this.startPhase();
       }
     }
   }
@@ -76,11 +89,26 @@ class Model {
   public startTurn() {
     const name = this._players.at(this._turn).name;
     emitter.emit('m_start_turn', { turn: this._turn, name: name });
+    this._phase = 0;
+    this.startPhase();
   }
 
   public endTurn() {
     const name = this._players.at(this._turn).name;
     emitter.emit('m_end_turn', { turn: this._turn, name: name });
+  }
+
+  /**
+   * Phase
+   */
+  public startPhase() {
+    const name = config.phases.at(this._phase)?.name;
+    emitter.emit('m_start_phase', { phase: this._phase, name: name });
+  }
+
+  public endPhase() {
+    const name = config.phases.at(this._phase)?.name;
+    emitter.emit('m_end_phase', { phase: this._phase, name: name });
   }
 
 }

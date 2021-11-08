@@ -13,8 +13,8 @@ const config = {
   phases: [
     { name: "Draw", lim: 2 },
     { name: "Play", lim: 1 },
-    { name: "Discard", lim: -1 },
-    { name: "Destroy", lim: -1 },
+    { name: "Hand", lim: -1 },
+    { name: "Keep", lim: -1 },
   ],
 
 };

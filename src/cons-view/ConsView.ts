@@ -44,6 +44,9 @@ export default class ConsView {
     emitter.on('m_start_turn', (payload: any) => this.group(`Turn ${payload.turn} Start : ${payload.name}`));
     emitter.on('m_end_turn', (payload: any) => this.groupEnd(`Turn ${payload.turn} End : ${payload.name}`));
 
+    emitter.on('m_start_phase', (payload: any) => this.group(`Phase ${payload.phase} Start : ${payload.name}`));
+    emitter.on('m_end_phase', (payload: any) => this.groupEnd(`Phase ${payload.phase} End : ${payload.name}`));
+
   }
 
   /**

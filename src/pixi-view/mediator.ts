@@ -34,6 +34,17 @@ class Mediator {
       if (button) { button.disable(); }
     });
 
+    emitter.on('m_start_phase', (payload: any) => {
+      let button = this.getButton(payload.name);
+      if (button) { button.enable(); }
+      // button = this.getButton('Player');
+      // if (button) { button.setText(payload.turn); }
+    });
+    emitter.on('m_end_phase', (payload: any) => {
+      const button = this.getButton(payload.name);
+      if (button) { button.disable(); }
+    });
+
   }
 
   /**
