@@ -18,6 +18,15 @@ class Mediator {
     emitter.on('m_end', m_end());
     emitter.on('m_start', m_start());
 
+    emitter.on('m_start_turn', (payload: any) => {
+      const button = this.getButton(payload.name);
+      if (button) { button.enable(); }
+    });
+    emitter.on('m_end_turn', (payload: any) => {
+      const button = this.getButton(payload.name);
+      if (button) { button.disable(); }
+    });
+
   }
 
   /**
