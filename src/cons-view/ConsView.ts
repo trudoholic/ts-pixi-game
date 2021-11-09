@@ -45,7 +45,10 @@ export default class ConsView {
     emitter.on('m_end_turn', (payload: any) => this.groupEnd(`Turn ${payload.turn} End : ${payload.name}`));
 
     emitter.on('m_start_phase', (payload: any) => this.group(`Phase ${payload.phase} Start : ${payload.name}`));
+    emitter.on('m_skip_phase', (payload: any) => this.logB(`skip: ${payload.name}`));
     emitter.on('m_end_phase', (payload: any) => this.groupEnd(`Phase ${payload.phase} End : ${payload.name}`));
+
+    emitter.on('m_start_imp', (payload: any) => this.logB(`${payload.imp} | ${payload.lim}`));
 
   }
 
@@ -70,6 +73,13 @@ export default class ConsView {
   public groupEnd(msg: string) {
     console.log(msg);
     console.groupEnd();
+  }
+
+  /**
+   * logB
+   */
+  public logB(msg: string) {
+    console.log(`%c${msg}`, 'color: #66f');
   }
 
   /**

@@ -12,6 +12,9 @@ class Model {
   private _round: number = 0;
   private _turn:  number = 0;
   private _phase: number = 0;
+  private _phaseLim: number = -1;
+  //impulse
+  private _imp: number = 0;
 
   constructor() {
     this._root.add(this._players);
@@ -35,6 +38,7 @@ class Model {
 
   public end() {
     if (this._active) {
+      this.endImpulse();
       this.endPhase();
       this.endTurn();
       this.endRound();
@@ -46,27 +50,38 @@ class Model {
 
   public next() {
     if (this._active) {
-      this.endPhase();
-      ++ this._phase;
-      if (this._phase === config.phases.length) {
+      //
+      this.endImpulse();
+      ++ this._imp;
+      if (this._phaseLim < 0 || this._imp === this._phaseLim) {
         //
-        this.endTurn();
-        ++ this._turn;
-        if (this._turn === this._n) {
+        this.endPhase();
+        ++ this._phase;
+        if (this._phase === config.phases.length) {
           //
-          this.endRound();
-          ++ this._round;
-          this.startRound();
+          this.endTurn();
+          ++ this._turn;
+          if (this._turn === this._n) {
+            //
+            this.endRound();
+            ++ this._round;
+            this.startRound();
+            //
+          }
+          else {
+            this.startTurn();
+          }
           //
         }
         else {
-          this.startTurn();
+          this.startPhase();
         }
         //
       }
       else {
-        this.startPhase();
+        this.startImpulse();
       }
+      //
     }
   }
 
@@ -104,11 +119,32 @@ class Model {
   public startPhase() {
     const name = config.phases.at(this._phase)?.name;
     emitter.emit('m_start_phase', { phase: this._phase, name: name });
+    this._phaseLim = config.phases.at(this._phase)?.lim ?? -1;
+    const skip = this._phaseLim < 0;
+    if (skip) {
+      emitter.emit('m_skip_phase', { phase: this._phase, name: name });
+      this.next();
+    }
+    else {
+      this._imp = 0;
+      this.startImpulse();
+    }
   }
 
   public endPhase() {
     const name = config.phases.at(this._phase)?.name;
     emitter.emit('m_end_phase', { phase: this._phase, name: name });
+  }
+
+  /**
+   * Impulse
+   */
+  public startImpulse() {
+    emitter.emit('m_start_imp', { imp: this._imp, lim: this._phaseLim });
+  }
+
+  public endImpulse() {
+    emitter.emit('m_end_imp', { imp: this._imp, lim: this._phaseLim });
   }
 
 }
