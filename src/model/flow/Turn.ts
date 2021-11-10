@@ -9,8 +9,7 @@ export default class Turn extends Flow {
   public start(reset = false) {
     super.start(reset);
     this.emit('m_start_turn', { turn: this._value, name: this.playerName(this._value) });
-    // this._turn = 0;
-    // this.startTurn();
+    (this.at(0) as Flow)?.start(true);
   }
 
   public end() {

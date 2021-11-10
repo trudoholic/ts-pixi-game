@@ -2,9 +2,10 @@ import emitter from '../eventEmitter';
 import Comp from './Comp';
 import config from '../config'
 
-import Flow from  './flow/Flow'
+import Flow  from './flow/Flow'
 import Round from './flow/Round'
-import Turn from  './flow/Turn'
+import Turn  from './flow/Turn'
+import Phase from './flow/Phase'
 
 class Model {
 
@@ -21,6 +22,7 @@ class Model {
 
   private _f_round: Flow;
   private _f_turn:  Flow;
+  private _f_phase: Flow;
 
   constructor() {
     this._root.add(this._players);
@@ -31,6 +33,8 @@ class Model {
     this._f_round = new Round('Round');
     this._f_turn = new Turn('Turn');
     this._f_round.add(this._f_turn);
+    this._f_phase = new Phase('Phase');
+    this._f_turn.add(this._f_phase);
   }
 
   /**
@@ -58,6 +62,8 @@ class Model {
       this.endTurn();
       this.endRound();
       /*/
+      this._f_phase.end();
+      this._f_turn.end();
       this._f_round.end();
       //
 
@@ -69,7 +75,8 @@ class Model {
   public next() {
     if (this._active) {
       // this._f_round.next(); // !!!
-      this._f_turn.next();
+      // this._f_turn.next();
+      this._f_phase.next();
     }
   }
 

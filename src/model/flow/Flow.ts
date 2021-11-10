@@ -17,6 +17,14 @@ export default class Flow extends Comp {
     return config.players[i].name;
   }
 
+  public phase(i: number) {
+    return config.phases[i];
+  }
+
+  public get phasesLength() {
+    return config.phases.length;
+  }
+
   public emit(id: string, payload: any) {
     emitter.emit(id, payload);
   }
