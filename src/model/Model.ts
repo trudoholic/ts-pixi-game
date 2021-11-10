@@ -2,6 +2,9 @@ import emitter from '../eventEmitter';
 import Comp from './Comp';
 import config from '../config'
 
+import Flow from './flow/Flow'
+import Round from './flow/Round'
+
 class Model {
 
   private _active: boolean = false;
@@ -13,14 +16,17 @@ class Model {
   private _turn:  number = 0;
   private _phase: number = 0;
   private _phaseLim: number = -1;
-  //impulse
   private _imp: number = 0;
+
+  private _f_round: Flow;
 
   constructor() {
     this._root.add(this._players);
     this._n = config.players.length;
     config.players.forEach(it => this._players.add(new Comp(it.name)));
     console.log(this._players.children);
+
+    this._f_round = new Round('Round');
   }
 
   /**
@@ -31,17 +37,25 @@ class Model {
       this._active = true;
       emitter.emit('m_start', {});
 
+      //
+      this._f_round.start(true);
+      /*/
       this._round = 0;
       this.startRound();
+      /*/
     }
   }
 
   public end() {
     if (this._active) {
+      /*/
       this.endImpulse();
       this.endPhase();
       this.endTurn();
       this.endRound();
+      /*/
+      this._f_round.end();
+      //
 
       this._active = false;
       emitter.emit('m_end', {});
@@ -49,6 +63,13 @@ class Model {
   }
 
   public next() {
+    if (this._active) {
+      this._f_round.next();
+    }
+  }
+
+
+  public next_() {
     if (this._active) {
       //
       this.endImpulse();
