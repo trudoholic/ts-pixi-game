@@ -9,11 +9,11 @@ export default class Round extends Flow {
   public start(reset = false) {
     super.start(reset);
     this.emit('m_start_round', { round: this._value });
-    // this._turn = 0;
-    // this.startTurn();
+    (this.at(0) as Flow)?.start(true);
   }
 
   public end() {
+    super.end();
     this.emit('m_end_round', { round: this._value });
   }
 

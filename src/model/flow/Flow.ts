@@ -13,6 +13,10 @@ export default class Flow extends Comp {
     this._n = config.players.length;
   }
 
+  public playerName(i: number) {
+    return config.players[i].name;
+  }
+
   public emit(id: string, payload: any) {
     emitter.emit(id, payload);
   }
@@ -21,19 +25,16 @@ export default class Flow extends Comp {
     if (reset) { this._value = 0; }
   }
 
-  public end() {
-  }
+  public end() {}
 
-  public next_value() {
-    // ++ this._value;
-    // this._done = false;
-  }
+  public next_value() {}
 
   public next() {
     this.end();
     this.next_value();
     if (this._done) {
       (this.parent as Flow)?.next();
+      this._value = 0;
     }
     else {
       this.start();

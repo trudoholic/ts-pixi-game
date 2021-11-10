@@ -1,16 +1,16 @@
 export default class Comp {
 
-  private _children: Array<Comp> = [];
-  private _name: string = '';
-  private _parent: Comp | null = null;
+  protected _children: Array<Comp> = [];
+  protected _name: string = '';
+  protected _parent: Comp | null = null;
 
   constructor(name: string) {
     this._name = name;
   }
 
   public add(comp: Comp) {
-    this._children.push(comp);
     comp.parent = this;
+    this._children.push(comp);
   }
 
   public at(i: number) {
@@ -25,7 +25,11 @@ export default class Comp {
     return this._name;
   }
 
-  public set parent(comp: Comp) {
+  public get parent() {
+    return this._parent;
+  }
+
+  public set parent(comp: Comp | null) {
     this._parent = comp;
   }
 
