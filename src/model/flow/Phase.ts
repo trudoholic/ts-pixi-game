@@ -10,15 +10,15 @@ export default class Phase extends Flow {
     super.start(reset);
     const phase =  this.phase(this._value);
     this.emit('m_start_phase', { phase: this._value, name: phase?.name });
-    const phaseLim = phase?.lim ?? -1;
-    const skip = phaseLim < 0;
+    Flow._phaseLim = phase?.lim ?? -1;
+
+    const skip = Flow._phaseLim < 0;
     if (skip) {
       this.emit('m_skip_phase', { phase: this._value, name: phase?.name });
       this.next();
     }
     else {
-      // this._imp = 0;
-      // this.startImpulse();
+      (this.at(0) as Flow)?.start(true);
     }
   }
 

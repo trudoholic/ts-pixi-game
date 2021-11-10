@@ -7,6 +7,7 @@ export default class Flow extends Comp {
   protected _value: number = 0;
   protected _done: boolean = false;
   protected _n: number = 0;
+  protected static _phaseLim: number = -1;
 
   constructor(name: string) {
     super(name);
