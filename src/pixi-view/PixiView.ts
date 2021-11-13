@@ -3,6 +3,7 @@ import * as PIXI from 'pixi.js'
 import emitter from '../eventEmitter'
 
 import HUD from "./HUD"
+import world from "./world"
 
 export default class PixiView {
 
@@ -12,7 +13,7 @@ export default class PixiView {
    *
    */
   constructor() {
-    const width = 1200, height = 900;
+    const width = 1600, height = 900;
     this.app = new PIXI.Application({
       width: width,
       height: height,
@@ -33,7 +34,12 @@ export default class PixiView {
     // this.test();
     // this.hit_test();
 
-    const hud = new HUD(new PIXI.Rectangle(0, 0, width, height));
+    const rect = new PIXI.Rectangle(0, 0, width, height);
+    this.app.stage.addChild(world);
+    world.init(rect);
+
+
+    const hud = new HUD(rect);
     this.app.stage.addChild(hud);
 
   }

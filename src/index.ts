@@ -13,3 +13,4 @@ const pixiView = new PixiView();
 // pixiView.hello();
 
 loadCommands(emitter);
+// npm run build-prod
