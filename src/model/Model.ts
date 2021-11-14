@@ -1,5 +1,7 @@
 import emitter from '../eventEmitter';
 import Comp from './Comp';
+import Player from './areas/Player'
+import Zone from './areas/Zone';
 import config from '../config'
 
 import Flow  from './flow/Flow'
@@ -11,7 +13,8 @@ import Impulse from './flow/Impulse'
 class Model {
 
   private _active: boolean = false;
-  private _root: Comp = new Comp('root');
+  private _root:    Comp = new Comp('root');
+  private _common:  Comp = new Comp('Common');
   private _players: Comp = new Comp('players');
 
   private _f_round: Flow;
@@ -20,9 +23,13 @@ class Model {
   private _f_imp:   Flow;
 
   constructor() {
+    this._root.add(this._common);
+    this._common.add(new Zone('DrawPile'));
+    this._common.add(new Zone('DropPile'));
+
     this._root.add(this._players);
-    config.players.forEach(it => this._players.add(new Comp(it.name)));
-    console.log(this._players.children);
+    config.players.forEach(it => this._players.add(new Player(it.name)));
+    console.log(this._players.childrenList);
 
     this._f_round = new Round('Round');
     this._f_turn = new Turn('Turn');
@@ -31,6 +38,11 @@ class Model {
     this._f_turn.add(this._f_phase);
     this._f_imp = new Impulse('Impulse');
     this._f_phase.add(this._f_imp);
+
+    //
+    // let test = (this._root.byName('WestKeep') as Zone)?.test;
+    // console.log('>>>', test);
+    //
   }
 
   public start() {
@@ -60,7 +72,7 @@ class Model {
 
 }
 
-// super();
+// super(); Common
 // Focused
 // Expanded/Toggled/Selected
 // Disabled Enabled

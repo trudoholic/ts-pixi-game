@@ -35,7 +35,7 @@ export default class ConsView {
     emitter.on('m_start', () => this.info('Game Start'));
     emitter.on('m_end', () => this.info('Game End'));
 
-    // emitter.on('m_start_round', (payload: any) => this.info(`Round ${payload.round} Start`));
+    // emitter.on('m_start_round', (payload: any) => this.info(`Round ${payload.round} Start`));`%c${msg}`, 'color: #369'
     // emitter.on('m_end_round', (payload: any)   => this.info(`Round ${payload.round} End`));
 
     emitter.on('m_start_round', (payload: any) => this.group(`Round ${payload.round} Start`));
@@ -79,7 +79,7 @@ export default class ConsView {
    * logB
    */
   public logB(msg: string) {
-    console.log(`%c${msg}`, 'color: #66f');
+    console.log(`%c${msg}`, 'color: #2196f3');
   }
 
   /**

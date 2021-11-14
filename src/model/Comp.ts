@@ -17,8 +17,12 @@ export default class Comp {
     return this._children[i];
   }
 
-  public get children() {
-    return this._children.map(it =>it.name);
+  public length() {
+    return this._children.length;
+  }
+
+  public get childrenList() {
+    return this._children.map(it => it.name);
   }
 
   public get name() {
@@ -31,6 +35,20 @@ export default class Comp {
 
   public set parent(comp: Comp | null) {
     this._parent = comp;
+  }
+
+  public byName(name: string): Comp | undefined {
+    let comp = undefined;
+    if (this._name === name) {
+      comp = this;
+    }
+    else {
+      this._children.some(it => {
+        comp = it.byName(name);
+        return !!comp;
+      });
+    }
+    return comp;
   }
 
 }

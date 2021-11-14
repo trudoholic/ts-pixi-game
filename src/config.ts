@@ -17,6 +17,12 @@ const config = {
     { name: "Keep", lim: -1 },
   ],
 
+  zones: [
+    { name: "Hand" },
+    { name: "Keep" },
+    { name: "Crib" },
+  ],
+
 };
 
 export default config;
